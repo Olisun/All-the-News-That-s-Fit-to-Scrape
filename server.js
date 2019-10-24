@@ -46,20 +46,6 @@ mongoose.connect(MONGODB_URI);
 
 
 // Routes
-// Detault route
-app.get("/", function(req, res) {
-  db.Article.find({})
-    .exec(function(error, data) {
-      if (error) {
-        res.send(error);
-      } else {
-        var newsObj = {
-          Article: data
-        };
-        res.render("index", newsObj);
-      }
-    });
-});
 
 // A GET route for scraping the website
 app.get("/scrape", function(req, res) {
@@ -67,8 +53,7 @@ app.get("/scrape", function(req, res) {
   axios.get("https://www.sfgate.com/").then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
-    console.log($)
-      // Now, we grab every h2 within an article tag, and do the following:
+    // Now, we grab every h2 within an article tag, and do the following:
     $("h5").each(function(i, element) {
       // Save an empty result object
       var result = {};
@@ -97,6 +82,23 @@ app.get("/scrape", function(req, res) {
     res.send("Scrape Complete");
   });
 });
+
+// Landing-page route
+app.get("/", function(req, res) {
+  db.Article.find({})
+    .exec(function(error, data) {
+      if (error) {
+        res.send(error);
+      } else {
+        var newsObj = {
+          Article: data
+        };
+        res.render("index", newsObj);
+      }
+    });
+});
+
+
 
 // Route for getting all Articles from the db
 app.get("/articles", function(req, res) {
