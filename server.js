@@ -37,23 +37,39 @@ app.use(express.static("./public"));
 var expressHb = require('express-handlebars');
 
 app.engine("handlebars", expressHb({ defaultLayout: "main", layoutsDir: __dirname + "/views/layouts" }));
-app.set('view engine', 'handlebars');
-app.set('views', __dirname + '/views');
+app.set("view engine", "handlebars");
+app.set("views", __dirname + "/views");
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/Scraper_HW";
+mongoose.connect(MONGODB_URI);
+
 
 // Routes
+// Detault route
+app.get("/", function(req, res) {
+  db.Article.find({})
+    .exec(function(error, data) {
+      if (error) {
+        res.send(error);
+      } else {
+        var newsObj = {
+          Article: data
+        };
+        res.render("index", newsObj);
+      }
+    });
+});
 
-// A GET route for scraping the echoJS website
+// A GET route for scraping the website
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with axios
-  axios.get("https://www.espn.com/nba/").then(function(response) {
+  axios.get("https://www.sfgate.com/").then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
     console.log($)
       // Now, we grab every h2 within an article tag, and do the following:
-    $("li").each(function(i, element) {
+    $("h5").each(function(i, element) {
       // Save an empty result object
       var result = {};
 
