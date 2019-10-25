@@ -6,7 +6,7 @@ An application built with Node, Express Servers, Handlebars, MongoDB and Cheerio
 ![](public/images/screen-shot.png)
 
 # Link to full app demo on Heroku:
-
+https://my-scraper-hw.herokuapp.com/
 
 ## About the project:
 We had to create a web-scraping application using MongoDB and Handlebars as the templating engine. The full list of technologies is referenced below.
