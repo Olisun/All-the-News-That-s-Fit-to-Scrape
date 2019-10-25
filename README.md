@@ -1,22 +1,24 @@
 # All-the-News-That-s-Fit-to-Scrape
 
-An application built with Node, Express Servers, MongoDB and Cheerio.
+An application built with Node, Express Servers, Handlebars, MongoDB and Cheerio.
 
 ## App Screen-Shots:
+![](public/images/screen-shot.png)
 
-
-
-## Link to full app demo on Heroku:
+# Link to full app demo on Heroku:
 
 
 ## About the project:
-
+We had to create a web-scraping application using MongoDB and Handlebars as the templating engine. The full list of technologies is referenced below.
 
 ## User Guide:
+1. The main landing page displays the recent content scraped. 
+2. Click ther scrape button for an updated list. 
+3. Click notes to add a note and save the comment.
 
 ## MVP Objectives:
 
-1. Whenever a user visits your site, the app should scrape stories from a news outlet of your choice and display them for the user. Each scraped article should be saved to your application database. At a minimum, the app should scrape and display the following information for each article:
+1. Whenever a user visits the site, the app should scrape stories from a news outlet of your choice and display them for the user. Each scraped article should be saved to the application database. At a minimum, the app should scrape and display the following information for each article:
 
 ``* Headline - the title of the article
   * Summary - a short summary of the article
@@ -46,19 +48,32 @@ An application built with Node, Express Servers, MongoDB and Cheerio.
 
 ## Methodology:
 
+Used the web scraping class activities as a guideline, particularly #20 (scraping into Mongoose)
 
+## Problems Overcome:
 
-## Problems We Overcame:
-
-
+Getting the scraped content to load onto the DOM. Code snippet shown below.
 
 ## Problems Still Facing:
 
-
+Accessing the links for each article.
+Getting the note feature to work.
 
 ## Code Snippets:
-
-
+```
+app.get("/", function(req, res) {
+  db.Article.find({}).then(function(data) {
+      var dbData = {
+        articles: data
+      };
+      res.render("index", dbData);
+    })
+    .catch(function(err) {
+      console.log(err);
+      res.send(err);
+    });
+});
+```
 
 ## File Structure Screen-Shot:
 ![](public/images/file-structure.png)

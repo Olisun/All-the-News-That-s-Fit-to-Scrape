@@ -1,18 +1,32 @@
 <div class="container">
-  <div class="jumbotron">
-    <h1 class="display-4">
-      SF Gate Article Scraper
-    </h1>
-    <hr class="my-4" />
-    <a class="btn btn-primary btn-lg" href="articles" role="button" style="text-align: center;">
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4 text-center">
+         Scrape CBR (Comic Book Resources)
+      </h1>
+    </div>
+    <div class="text-center">
+      <a class="btn btn-primary btn-lg" href="scrape" role="button" style="text-align: center;">
       Click to Scrape
     </a>
+    <span></span>
+       <a class="btn btn-primary btn-lg" href="articles" role="button" style="text-align: center;">
+      API Articles
+    </a>
+    </div>
   </div>
 
-  <div class="articles-container">
-    <ul>
-     {{#each Article}}
-     {{/each}}
-    </ul>
+  <div id="articles">
+    {{#each articles}}
+    <div class="card bg-light">
+      <div class="card-body">
+        <h5 class="card-title text-dark">{{title}}</h5>
+        <a class="btn btn-primary" href="{{link}}">Read More</a>
+        <button data-id="{{_id}}" class="notes btn btn-primary">Notes</button>
+      </div>
+    </div>
+    {{/each}}
   </div>
-</div>
+
+  <div id="notes">
+  </div>
