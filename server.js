@@ -32,13 +32,14 @@ app.get("/scrape", function(req, res) {
     $("h3.bc-title").each(function(i, element) {
       var result = {};
 
-      result.title = $(this)
-        .find("a")
+      result.title = $(element)
+        .find(".bc-title")
         .text();
 
-      result.link = $(this)
+      result.link = $(element)
         .children("a")
-        .attr("href");
+        .attr("href")
+        .find(".bc-title-link")
 
       db.Article.create(result)
         .then(function(dbArticle) {
@@ -102,6 +103,18 @@ app.post("/articles/:id", function(req, res) {
       res.json(err);
     });
 });
+
+app.get("/notes/:id", function (req, res) {
+
+  db.Note.find({ _id: req.params.id }).populate("Note")
+    .then(function (dbNote) {
+      res.json(dbNote)
+    })
+    .catch(function (err) {
+      res.json(err)
+    });
+
+})
 
 app.listen(PORT, function() {
   console.log("App running on port " + PORT + "!");
