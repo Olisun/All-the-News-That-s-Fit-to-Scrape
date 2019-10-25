@@ -80,10 +80,8 @@ app.get("/", function(req, res) {
 
 
 ## Link to Github Portfolio Page
-
-
+https://olis-portfolio.herokuapp.com/
 
 ## You can also reach me on LinkedIn.
-
 https://www.linkedin.com/in/oliver-sun-4b6baba/
 
