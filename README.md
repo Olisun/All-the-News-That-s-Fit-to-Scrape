@@ -53,11 +53,9 @@ Used the web scraping class activities as a guideline, particularly #20 (scrapin
 
 ## Problems Overcome:
 
-Getting the scraped content to load onto the DOM. Code snippet shown below. Fixed remaining bugs of note not showing by adjusting CSS.
+Getting the scraped content to load onto the DOM. Code snippet shown below. Fixed remaining bugs of note not showing by adjusting CSS. Fixed last bug with notes not saving. It was due to a syntax error.
 
 ## Problems Still Facing.
-
-Notes not saving.
 
 ## Code Snippets:
 ```
