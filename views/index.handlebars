@@ -2,27 +2,27 @@
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1 class="display-4 text-center">
-         Scrape CBR (Comic Book Resources)
+         News Scraper
       </h1>
     </div>
     <div class="text-center">
-      <a class="btn btn-primary btn-lg" href="scrape" role="button" style="text-align: center;">
+      <a class="btn btn-primary btn-sm" href="scrape" role="button" id="scrape" style="text-align: center;">
       Click to Scrape
     </a>
     <span></span>
-       <a class="btn btn-primary btn-lg" href="articles" role="button" style="text-align: center;">
+       <a class="btn btn-primary btn-sm" href="articles" role="button" style="text-align: center;">
       API Articles
     </a>
     </div>
   </div>
 
   <div id="articles">
-    {{#each articles}}
+    {{#each article}}
     <div class="card bg-light">
       <div class="card-body">
         <h5 class="card-title text-dark">{{title}}</h5>
-        <a class="btn btn-primary" href="{{link}}">Read More</a>
-        <button data-id="{{_id}}" class="notes btn btn-primary">Notes</button>
+        <a class="btn btn-primary" data-id="{{id}}" href="{{link}}">Read More</a>
+        <button data-id="{{id}}" class="notes btn btn-primary">Notes</button>
       </div>
     </div>
     {{/each}}

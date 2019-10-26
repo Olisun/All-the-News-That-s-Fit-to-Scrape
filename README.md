@@ -13,8 +13,9 @@ We had to create a web-scraping application using MongoDB and Handlebars as the 
 
 ## User Guide:
 1. The main landing page displays the recent content scraped. 
-2. Click ther scrape button for an updated list. 
-3. Click notes to add a note and save the comment.
+2. Click the scrape button for an updated list. 
+3. Click the read more button for the article.
+4. Click notes to add a note and save the comment.
 
 ## MVP Objectives:
 
@@ -52,12 +53,11 @@ Used the web scraping class activities as a guideline, particularly #20 (scrapin
 
 ## Problems Overcome:
 
-Getting the scraped content to load onto the DOM. Code snippet shown below.
+Getting the scraped content to load onto the DOM. Code snippet shown below. Fixed remaining bugs of note not showing by adjusting CSS.
 
-## Problems Still Facing:
+## Problems Still Facing.
 
-Accessing the links for each article.
-Getting the note feature to work.
+None.
 
 ## Code Snippets:
 ```

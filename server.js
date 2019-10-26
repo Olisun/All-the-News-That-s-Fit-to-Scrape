@@ -21,25 +21,26 @@ app.engine("handlebars", expressHb({ defaultLayout: "main", layoutsDir: __dirnam
 app.set("view engine", "handlebars");
 app.set("views", __dirname + "/views");
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/cbr";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/nbcNews";
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 app.get("/scrape", function(req, res) {
-  axios.get("https://www.cbr.com/").then(function(data) {
-    var $ = cheerio.load(data.data);
+  axios.get("https://www.nbcnews.com/").then(function(response) {
+    var $ = cheerio.load(response.data);
 
-    $("h3.bc-title").each(function(i, element) {
+    $("h3").each(function(i, element) {
       var result = {};
 
-      result.title = $(element)
-        .find(".bc-title")
+      result.title = $(this)
+        .find("a")
         .text();
 
-      result.link = $(element)
+      result.link = $(this)
         .children("a")
-        .attr("href")
-        .find(".bc-title-link")
+        .attr("href");
+
+      console.log(result.link)
 
       db.Article.create(result)
         .then(function(dbArticle) {
@@ -54,18 +55,18 @@ app.get("/scrape", function(req, res) {
   });
 });
 
+app.get("/", function (req, res) {
+  db.Article.find({})
+  .then(function (dbArticle) {
+    var data = {
+      article: dbArticle,
+    }
+    res.render("index", data)
+    console.log(dbArticle);
+  }).catch(function (err) {
+    res.json(err)
+  })
 
-app.get("/", function(req, res) {
-  db.Article.find({}).then(function(data) {
-      var dbData = {
-        articles: data
-      };
-      res.render("index", dbData);
-    })
-    .catch(function(err) {
-      console.log(err);
-      res.send(err);
-    });
 });
 
 app.get("/articles", function(req, res) {
@@ -105,17 +106,23 @@ app.post("/articles/:id", function(req, res) {
 });
 
 app.get("/notes/:id", function (req, res) {
-
-  db.Note.find({ _id: req.params.id }).populate("Note")
+  var ID = req.params.id;
+  db.Note.find({ _id: ID }).populate("Note")
     .then(function (dbNote) {
       res.json(dbNote)
     })
     .catch(function (err) {
       res.json(err)
     });
+});
 
-})
-
+app.delete("/articles/delete", function (req, res) {
+  db.Article.remove({})
+  .then(function (response) {
+    res.json(response)
+  })
+});
+  
 app.listen(PORT, function() {
   console.log("App running on port " + PORT + "!");
 });
