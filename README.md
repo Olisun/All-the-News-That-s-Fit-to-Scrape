@@ -57,7 +57,7 @@ Getting the scraped content to load onto the DOM. Code snippet shown below. Fixe
 
 ## Problems Still Facing.
 
-None.
+Notes not saving.
 
 ## Code Snippets:
 ```
