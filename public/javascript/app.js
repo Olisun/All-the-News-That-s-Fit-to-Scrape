@@ -39,7 +39,7 @@ $(document).on("click", "#savenote", function() {
 });
 
 $(document).on("click", "#scrape", function() {
-  alert("Should be a few moments. click back-arrow to view articles.")
+  alert("Should be a few moments. Click back-arrow to view articles.")
   $.ajax({
     url: "articles/delete",
     type: 'DELETE'

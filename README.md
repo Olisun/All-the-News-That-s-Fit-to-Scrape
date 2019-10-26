@@ -21,7 +21,7 @@ We had to create a web-scraping application using MongoDB and Handlebars as the 
 
 1. Whenever a user visits the site, the app should scrape stories from a news outlet of your choice and display them for the user. Each scraped article should be saved to the application database. At a minimum, the app should scrape and display the following information for each article:
 
-``* Headline - the title of the article
+  * Headline - the title of the article
   * Summary - a short summary of the article
   * URL - the url to the original article
 
@@ -49,11 +49,11 @@ We had to create a web-scraping application using MongoDB and Handlebars as the 
 
 ## Methodology:
 
-Used the web scraping class activities as a guideline, particularly #20 (scraping into Mongoose)
+Used the web scraping class activities as a guideline, particularly #20 (scraping into Mongoose).
 
 ## Problems Overcome:
 
-Getting the scraped content to load onto the DOM. Code snippet shown below. Fixed remaining bugs of note not showing by adjusting CSS. Fixed last bug with notes not saving. It was due to a syntax error.
+Getting the scraped content to load onto the DOM. See code snippet shown below for further details. Fixed bug of note not showing by adjusting CSS (must give shout-out to Ron who pointed this out to me Friday morning). Fixed last bug with notes not saving. It was due to a syntax error in app.js.
 
 ## Problems Still Facing.
 
